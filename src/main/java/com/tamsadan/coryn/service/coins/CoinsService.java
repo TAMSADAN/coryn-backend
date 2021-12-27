@@ -22,7 +22,8 @@ public class CoinsService {
 
     @Transactional(readOnly = true)
     public CoinsResponseDto findByMarket(String market) {
-        Coins entity = coinsRepository.findByMarket(market).orElseThrow(() -> new IllegalArgumentException("해당 코인이 존재하지 않습니다. market="+market));
+        Coins entity = coinsRepository.findByMarket(market)
+                .orElseThrow(() -> new IllegalArgumentException("해당 코인 정보가 존재하지 않습니다. market="+market));
         return new CoinsResponseDto(entity);
     }
 }
