@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface CoinsRepository extends JpaRepository<Coins, Long> {
-
-    @Query("SELECT c FROM Coins c ORDER BY c.id DESC")
-    List<Coins> findAllDesc();
+public interface CoinsRepository extends JpaRepository<Coins, String> {
+    List<Coins> findAll();
+    Optional<Coins> findByMarket(String market);
 }
