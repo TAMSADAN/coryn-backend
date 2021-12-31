@@ -3,10 +3,7 @@ package com.tamsadan.coryn.app;
 import com.tamsadan.coryn.app.dto.NewsResponseDto;
 import com.tamsadan.coryn.service.news.NewsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,8 +13,8 @@ import java.util.List;
 public class NewsApiController {
     private final NewsService newsService;
 
-    @GetMapping("/{market}")
-    public List<NewsResponseDto> getNews(@PathVariable String market) {
-        return newsService.findByMarket(market);
+    @GetMapping("")
+    public List<NewsResponseDto> getNews(@RequestParam(name = "market", required = false) String market, @RequestParam(name="type", required = false) String type) {
+        return newsService.findByMarketAndType(market, type);
     }
 }
