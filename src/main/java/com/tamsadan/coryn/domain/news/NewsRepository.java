@@ -9,7 +9,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("SELECT n from News n INNER JOIN n.coins c WHERE c.market = :market ORDER BY n.postedDate DESC")
     List<News> findByMarket(String market);
 
-    @Query("SELECT n from News n WHERE n.newsType = :type ORDER BY n.postedDate DESC")
+    @Query("SELECT DISTINCT n from News n INNER JOIN n.coins c WHERE n.newsType = :type ORDER BY n.postedDate DESC")
     List<News> findByType(String type);
 
     @Query("SELECT n from News n INNER JOIN n.coins c WHERE c.market = :market AND n.newsType = :type ORDER BY n.postedDate DESC")
